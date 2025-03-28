@@ -8,40 +8,40 @@ class Zoo:
         self.animals = []
 
     def add_animal(self, animal: Animal):
-        """Adds an Animal object to the zoo's collection."""
+        """Adds an Animal object to the zoo."""
         self.animals.append(animal)
         print(f"{animal.name} the {animal.species} added to the zoo.")
 
     def remove_animal(self, name: str):
-        """Removes an animal from the zoo by name."""
-        for animal in self.animals:
-            if animal.name == name:
-                self.animals.remove(animal)
-                print(f"{name} removed from the zoo.")
-                return
-        print(f"No animal named {name} found.")
+        """Removes an animal by name using efficient lookup."""
+        animal = next((a for a in self.animals if a.name == name), None)
+        if animal:
+            self.animals.remove(animal)
+            print(f"{name} removed from the zoo.")
+        else:
+            print(f"No animal named {name} found.")
 
     def list_animals(self):
-        """Lists all animals currently in the zoo."""
+        """Prints all animals in the zoo with name and species."""
         if not self.animals:
             print("No animals in the zoo.")
         else:
             for animal in self.animals:
-                print(animal)
+                print(f"{animal.name} ({animal.species})")
 
     def search_animal(self, name: str):
-        """Searches for an animal by name (case-insensitive)."""
-        for animal in self.animals:
-            if animal.name.lower() == name.lower():
-                print(f"Found: {animal}")
-                return animal
+        """Searches for an animal by name (case-insensitive) and prints details."""
+        animal = next((a for a in self.animals if a.name.lower() == name.lower()), None)
+        if animal:
+            print(f"Found: {animal.name} ({animal.species})")
+            return animal
         print(f"No animal named {name} found.")
         return None
 
     def update_animal(self, name: str, new_name: str = None, new_species: str = None):
         """
-        Updates an animal's name and/or species by searching for its current name.
-        Only changes values that are explicitly provided.
+        Updates an animal's name and/or species if found.
+        Only applies changes if new values are provided.
         """
         animal = self.search_animal(name)
         if animal:

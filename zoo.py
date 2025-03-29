@@ -52,3 +52,5 @@ class Zoo:
                 print(f"Changing species from {animal.species} to {new_species}")
                 animal.species = new_species
             print("Animal updated successfully.")
+        else:
+            print("No updates performed.")

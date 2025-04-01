@@ -1,6 +1,7 @@
 import json
 import logging
 from animals import Animal, Dog, Cat, Bird
+import os
 
 logging.basicConfig(filename="zoo.log", level=logging.INFO,
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -36,6 +37,11 @@ def load_animals(zoo, filename="zoo_data.json"):
             data = json.load(file)
         
         for item in data:
+            # Validate required fields are present
+            if not all(key in item for key in ["name", "species", "type"]):
+                logging.warning(f"Skipping invalid animal entry: {item}")
+                continue
+                
             name = item["name"]
             species = item["species"]
             animal_type = item["type"]
@@ -51,9 +57,24 @@ def load_animals(zoo, filename="zoo_data.json"):
             
             zoo.add_animal(animal)
         logging.info(f"Animals loaded successfully from {filename}.")
+        return True
     except FileNotFoundError:
         logging.warning(f"Error: {filename} not found. Starting with an empty zoo.")
+        return False
     except json.JSONDecodeError:
         logging.error(f"Error: Failed to decode {filename}. File may be corrupted.")
+        return False
     except Exception as e:
         logging.error(f"Unexpected error loading animals: {e}")
+        return False
+
+def check_save_file_exists(filename="zoo_data.json"):
+    """Check if the save file exists.
+    
+    Returns:
+        bool: True if file exists, False otherwise
+    """
+    exists = os.path.isfile(filename)
+    if not exists:
+        logging.info(f"Save file {filename} does not exist")
+    return exists

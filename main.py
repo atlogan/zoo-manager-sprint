@@ -3,7 +3,7 @@ import animals
 import zoo
 import file_io
 
-#Creates a Zoo instance
+#Creates a Zoo object
 from animals import Dog, Cat
 from zoo import Zoo
 
@@ -30,16 +30,13 @@ def main():
 if __name__ == "__main__":
     main() 
 
-#Uses a 'try-except statement to either 
-#Add animals manually or Load from file
-class Animals:
-    def animal_name(self, name):
-        '''Animal name will be printed using this method'''
-        self.name = name
+'''
+Uses a 'try-except statement to either 
+Add animals manually or Load from file
+'''
 
-    def make_sound(self, sound):
-        '''Animal makes a sound using this method'''
-        self.sound = sound
 
-#Provides interface to list, add, save,
-#load, or remove
+'''
+Provides interface to list, add, save,
+load, or remove
+'''

@@ -27,6 +27,11 @@ def main():
     print("\nAll animals in the zoo:")
     my_zoo.list_animals()
 
+    #creates a file and writes the animals in the file as a list
+    list_of_animals = [dog, cat]
+    with open('zoo.txt', 'w') as tfile:
+        tfile.write("\n".join(list_of_animals))
+
 if __name__ == "__main__":
     main() 
 

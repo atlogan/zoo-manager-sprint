@@ -1,5 +1,6 @@
 #main.py
 
+#import modules from other programs
 from animals import Dog, Cat, Bird
 from zoo import Zoo
 from file_io import save_animals, load_animals
@@ -24,6 +25,7 @@ def main():
         
         choice = input("Enter your choice: ")
         
+        #Users chooses from the list of options
         if choice == "1":
             my_zoo.list_animals()
         elif choice == "2":
@@ -56,15 +58,6 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
+#Calls the function
 if __name__ == "__main__":
     main()  
-'''
-Uses a 'try-except statement to either 
-Add animals manually or Load from file
-'''
-
-
-'''
-Provides interface to list, add, save,
-load, or remove
-'''

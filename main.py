@@ -21,7 +21,8 @@ def main():
         print("2. Add a new animal")
         print("3. Save animals to file")
         print("4. Load animals from file")
-        print("5. Exit")
+        print("5. Remove an animal from file")
+        print("6. Exit")
         
         choice = input("Enter your choice: ")
         
@@ -52,7 +53,19 @@ def main():
                 print("Animals loaded successfully.")
             else:
                 print("Failed to load animals.")
-        elif choice == "5":
+        elif choice == '5':
+            animal_type = input("Enter the animal you want to delete: ")
+            if animal_type == "Dog":
+                remove_animal = animal_type.remove(Dog(name, species))
+            elif animal_type == "Cat":
+                removal_animal = animal_type.remove(Cat(name, species))
+            elif animal_type == "Bird":
+                removal_animal = animal_type.remove(Cat(name, species))
+            else:
+                print("Uknown animal type.")
+                continue
+            my_zoo.remove_animal(animal)
+        elif choice == "6":
             print("Exiting...")
             break
         else:

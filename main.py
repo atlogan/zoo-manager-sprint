@@ -54,17 +54,8 @@ def main():
             else:
                 print("Failed to load animals.")
         elif choice == '5':
-            animal_type = input("Enter the animal you want to delete: ")
-            if animal_type == "Dog":
-                remove_animal = animal_type.remove(Dog(name, species))
-            elif animal_type == "Cat":
-                removal_animal = animal_type.remove(Cat(name, species))
-            elif animal_type == "Bird":
-                removal_animal = animal_type.remove(Cat(name, species))
-            else:
-                print("Uknown animal type.")
-                continue
-            my_zoo.remove_animal(animal)
+            name = input("Enter the name of the animal you want to delete: ")
+            my_zoo.remove_animal(name)
         elif choice == "6":
             print("Exiting...")
             break
